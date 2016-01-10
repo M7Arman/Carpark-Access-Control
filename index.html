@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Russian Number Plates</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div id="tabs" class="container">
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#entrance-tab">Enterance</a></li>
+			<li><a data-toggle="tab" href="#exit-tab">Exit</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="entrance-tab" class="tab-pane fade in active">
+				<div id="entrance-tab-form">
+						<div id="number" class="input-group input-group-lg">
+							<input id="large-number" class="form-control" type="text"
+								placeholder="x777xx" aria-describedby="addon1" />
+							<span class="input-group-addon" id="addon1">
+							<input id="small-number" class="form-control" type="text"
+								placeholder="00" />
+								<div id="rus">
+									RUS
+									<img src="images/Russia-Flag-icon.png" title="Russia-Flag"
+									alt="Russia-Flag icon" height="32" width="32" />
+								</div>	
+							</span>
+						</div>
+					<div id="ticket-radio">
+						<label for="yes-no" class="control-label input-group">Is there a ticket?</label>
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-default"> <input name="yes-no"
+								value="Yes" type="radio">Yes
+							</label>
+							<label class="btn btn-default active"> <input name="yes-no"
+								value="No" type="radio">No
+							</label>
+						</div>
+					</div>
+					<button id="confirm-btn" type="button" class="btn .btn-lg btn-primary pull-right">Confirm</button>
+				</div>
+			</div>
+
+			<div id="exit-tab" class="tab-pane fade">
+				<h3>Menu 1</h3>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

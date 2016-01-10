@@ -1,0 +1,107 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color: #607D8B !important;
+}
+
+#tabs.container {
+	margin: 0 auto;
+	width: 70%;
+	background-color: #DFF0D8;
+	height: 500px;
+	margin-top: 50px;
+	padding: 0;
+}
+
+.nav-tabs {
+	background-color: #79979C;
+}
+
+.nav-tabs>li {
+	width: 50%;
+}
+
+#tabs>.nav-tabs>li>a {
+	border-radius: 0 !important;
+	margin-right: 0 !important;
+	color: white;
+	text-align: center;
+	font-size: 32px;
+	transition: all 0.3s ease 0s;
+}
+
+#tabs>.nav-tabs>li>a, #tabs>.nav-tabs>li>a:hover {
+	color: rgba(0, 0, 0, 0.58);
+}
+
+#tabs>.nav-tabs>li>a:hover {
+	background-color: #6A9298;
+}
+
+#tabs>.nav-tabs>li.active>a {
+	background-color: #DFF0D8;
+}
+
+#entrance-tab-form {
+	margin-left: 200px;
+}
+
+#number {
+	margin-top: 60px;
+	width: 350px;
+}
+
+#large-number {
+	height: 100px;
+	padding: 0;
+	font-size: 68px;
+}
+
+#number>#addon1>#rus {
+	float: left;
+	margin-top: 10px;
+}
+
+#small-number {
+	width: 60px;
+	height: 36px;
+	padding: 0;
+	font-size: 25px;
+	text-align: center;
+}
+
+#large-number::-webkit-input-placeholder { /* WebKit browsers */
+	text-align: center;
+}
+
+#large-number:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	text-align: center;
+}
+
+#large-number::-moz-placeholder {
+	/* Mozilla Firefox 19+ but I'm not sure about working */
+	text-align: center;
+}
+
+#large-number:-ms-input-placeholder { /* Internet Explorer 10+ */
+	text-align: center;
+}
+
+#ticket-radio {
+	font-size: 30px;
+	color: rgba(0, 0, 0, 0.58);
+	margin-top: 30px;
+}
+
+.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default {
+	color: rgb(0, 110, 162) !important;
+	font-weight: bold;
+}
+
+#confirm-btn {
+    margin-top: 70px;
+    margin-right: 50px;
+    width: 150px;
+    height: 70px;
+    font-size: 30px;
+}
