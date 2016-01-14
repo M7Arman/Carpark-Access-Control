@@ -93,15 +93,43 @@ body {
 	margin-top: 30px;
 }
 
-.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default {
+.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default
+	{
 	color: rgb(0, 110, 162) !important;
 	font-weight: bold;
 }
 
 #confirm-btn {
-    margin-top: 70px;
-    margin-right: 50px;
-    width: 150px;
-    height: 70px;
-    font-size: 30px;
+	margin-top: 70px;
+	margin-right: 50px;
+	width: 150px;
+	height: 70px;
+	font-size: 30px;
+}
+
+#table {
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.th-head, .td-inner {
+	text-align: center;
+	color: hsla(0, 0%, 0%, 0.73);
+}
+
+.th-head {
+	font-size: 22px;
+}
+
+.td-inner {
+	font-size: 18px;
+}
+
+.btn-danger {
+	border-radius: 0 !important;
+}
+
+.car-number {
+	font-weight: bold;
 }
