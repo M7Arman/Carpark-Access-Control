@@ -24,7 +24,6 @@ $app->get('/cars', function ($req, $res, $args) use($db) {
     $cars = array();
     foreach($db->cars() as $car) {
         $cars[] = array(
-            'id' => $car['id'],
             'number' => $car['number'],
             'region' => $car['region'],
             'ticket' => $car['ticket']
