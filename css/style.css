@@ -51,7 +51,7 @@ body {
 	width: 350px;
 }
 
-#large-number {
+#car-number {
 	height: 100px;
 	padding: 0;
 	font-size: 68px;
@@ -62,7 +62,7 @@ body {
 	margin-top: 10px;
 }
 
-#small-number {
+#region {
 	width: 60px;
 	height: 36px;
 	padding: 0;
@@ -70,20 +70,20 @@ body {
 	text-align: center;
 }
 
-#large-number::-webkit-input-placeholder { /* WebKit browsers */
+#car-number::-webkit-input-placeholder { /* WebKit browsers */
 	text-align: center;
 }
 
-#large-number:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+#car-number:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 	text-align: center;
 }
 
-#large-number::-moz-placeholder {
+#car-number::-moz-placeholder {
 	/* Mozilla Firefox 19+ but I'm not sure about working */
 	text-align: center;
 }
 
-#large-number:-ms-input-placeholder { /* Internet Explorer 10+ */
+#car-number:-ms-input-placeholder { /* Internet Explorer 10+ */
 	text-align: center;
 }
 
@@ -111,6 +111,13 @@ body {
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
+    margin-top: 10px;
+}
+
+#table button{
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
 }
 
 .th-head, .td-inner {

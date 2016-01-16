@@ -3,56 +3,99 @@
  */
 
 var URL = window.location.href; // Returns current URL
-var apis = {
-	addCar : "api/add-car",
-	removeCar : "api/remove-car",
-	getAllCars : "api/get-all-cars"
+var carParkLimit = 10;
+var endpoints = {
+	addCar : "car",
+	deleteCar : "car",
+	getAllCars : "cars"
 };
 
-var addCarApiParams = {
-	car_number : "",
-	is_there_ticket : ""
+var addCarApiInitialBody = {
+	number: "",
+    region: "",
+	ticket: ""
+};
+
+var emptyRow = {
+	"ticket" : "-",
+	"number" : "-"
 };
 
 $(document).ready(function() {
-
-	//TODO: get all cars via API
-	drawTable(data);
-
-	$("#confirm-btn").click(confirmCallback);
-	$(".btn-danger").click(removeCarNum);
+    getAllCars();
+    $("#confirm-btn").click(addCar);
 });
+
+function injectRemoveCarClickEvents() {
+    $("#table button").click(removeCar);
+    console.log("injectClickEvents");
+}
+
+function getAllCars() {
+    console.log("Returning cars info...");
+    var fullUrl = URL + endpoints.getAllCars;
+    console.log("url: " + fullUrl);
+    $.ajax({
+        url : fullUrl,
+        type : "GET",
+        async: false,
+        success : function(data, status) {
+            drawTable(data);
+        },
+        error: function() {
+           //TODO: Handle this function
+        }
+    });
+    injectRemoveCarClickEvents();
+}
 
 /**
  * The function is called when a click event on 'Confirm' button is performed
  */
-function confirmCallback() {
-	console.log("Confirming...");
-	var fullUrl = URL + apis.addCar;
+function addCar() {
+	console.log("adding...");
+	var fullUrl = URL + endpoints.addCar;
 	console.log("url: " + fullUrl);
-	addCarApiParams.car_number = getCarNumber();
-	addCarApiParams.is_there_ticket = getIsThereTicket();
-	$.get(fullUrl, addCarApiParams, function(data, textStatus, xhr) {
-		console.log("response: " + data);
-		console.log("xhr: " + xhr);
-		console.log("xhr status: " + xhr.status);
-		// TODO: complete implementation
-	});
+    addCarApiBody = $.extend({}, addCarApiInitialBody);
+	addCarApiBody.number = $('#car-number').val();
+    addCarApiBody.region = $('#region').val();
+	addCarApiBody.ticket = getIsThereTicket();
+    $.ajax({
+        url: fullUrl,
+        type: "POST",
+        data: addCarApiBody,
+        success : function(data, status) {
+            // TODO: Print notification about successful adding
+            // TODO: Clear 'add car' fields
+            getAllCars();
+        },
+        error: function() {
+           //TODO: Handle this function
+        }
+    });
 }
 
 /**
  * The function is called when a click event on 'Remove' button of any table row
  * is performed
  */
-function removeCarNum() {
+function removeCar() {
+    console.log("Removing the car...")
 	var row = $(this).parent().parent();
-	var carNumToRemove = row.find(".car-number");
+	var carFullNum = row.find(".car-number").html().split(" ");
+    var carNum = carFullNum[0];
+    var region = carFullNum[1];
 	var ticketOfCar = row.find(".is-there-ticket");
-	if (carNumToRemove.html() !== "-") {
-		//TODO: remove car number via API
-		carNumToRemove.text("-");
-		ticketOfCar.text("-");
-	}
+    var fullUrl = URL + endpoints.deleteCar + "/" + carNum + "/" + region;
+    $.ajax({
+        url: fullUrl,
+        type: "DELETE",
+        success : getAllCars,
+        error: function() {
+            alert("Could not remove the car.");
+           //TODO: Handle this function
+        }
+    });
 }
 
 function getIsThereTicket() {
@@ -61,73 +104,39 @@ function getIsThereTicket() {
 	return selected;
 };
 
-function getCarNumber() {
-	var largeNumber = $('#large-number').val();
-	var smallNumber = $('#small-number').val();
-	console.log("large number: " + largeNumber);
-	console.log("small number: " + smallNumber);
-	return largeNumber + smallNumber;
-}
-
-function setGetParameter(url, paramName, paramValue) {
-	if (url.indexOf("?") < 0) {
-		url += "?" + paramName + "=" + paramValue;
-	} else {
-		url += "&" + paramName + "=" + paramValue;
-	}
-	return url;
-}
-
-var data = [ {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-}, {
-	"ticket" : "-",
-	"number" : "-"
-} ];
-
-function drawTable(data) {
-	for (var i = 0; i < data.length; i++) {
-		drawRow(data[i], i);
+function drawTable(cars) {
+    resetTable();
+    console.log("Drawing table...");
+    var carsNum = cars.length;
+	for (var i = 0; i < carParkLimit; i++) {
+        if(carsNum > i) {
+            drawRow(cars[i], i);
+        } else {
+            drawRow(emptyRow, i);
+        }
+		
 	}
 }
 
-function drawRow(rowData, i) {
+function resetTable() {
+    console.log("Reseting table...");
+    $("#table>tbody").remove();
+}
+
+function drawRow(row, i) {
+    var rowData = $.extend({}, emptyRow);
+    if(row.number !== emptyRow.number) {
+        rowData.number = row.number + " " + row.region;
+        rowData.ticket = (row.ticket === "Y") ? "Yes" : "No";
+    }
 	var row = $("<tr />")
 	$("#table").append(row);
 	var tdOpen = "<td class=\"td-inner\">";
 	var tdOpenForCarNum = "<td class=\"td-inner car-number\">";
-	var tdOpenForTicket = "<td class=\"td-inner is-there-ticket\">";
+    var tdOpenForTicket = "<td class=\"td-inner is-there-ticket\">";
 	var tdClose = "</td>";
-	var removeBtn = "<a class=\"btn btn-danger center-block\" href=\"#\"><i class=\"glyphicon glyphicon-remove\"></i></a>";
-	var disabledRemoveBtn = "<a class=\"btn btn-danger center-block disabled\" href=\"#\"><i class=\"glyphicon glyphicon-remove\"></i></a>";
+	var removeBtn = "<button class=\"btn btn-danger center-block\"><i class=\"glyphicon glyphicon-remove\"></i></button>";
+	var disabledRemoveBtn = "<button class=\"btn btn-danger center-block disabled\"><i class=\"glyphicon glyphicon-remove\"></i></button>";
 	row.append($(tdOpen + (i + 1) + tdClose));
 	row.append($(tdOpenForTicket + rowData.ticket + tdClose));
 	row.append($(tdOpenForCarNum + rowData.number + tdClose));
