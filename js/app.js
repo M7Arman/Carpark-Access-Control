@@ -24,7 +24,21 @@ var emptyRow = {
 $(document).ready(function() {
     getAllCars();
     $("#confirm-btn").click(addCar);
+    $("#car-number").change(validateInputs);
+    $("#region").change(validateInputs);
 });
+
+function validateInputs() {
+    var carNumberVal = $("#car-number").val();
+    var regionVal = $("#region").val();
+    
+    if(carNumberVal.length == 6 && (regionVal.length == 2 || regionVal.length == 3)) {
+        $("#confirm-btn").removeClass("disabled");
+    } else {
+        $("#confirm-btn").addClass("disabled");
+    }
+}
+
 
 function injectRemoveCarClickEvents() {
     $("#table button").click(removeCar);
@@ -66,13 +80,19 @@ function addCar() {
         data: addCarApiBody,
         success : function(data, status) {
             // TODO: Print notification about successful adding
-            // TODO: Clear 'add car' fields
+            emptyAddCarFields();
             getAllCars();
         },
         error: function() {
            //TODO: Handle this function
         }
     });
+}
+
+function emptyAddCarFields() {
+    console.log("Empting Add Car fields...")
+    $('#car-number').val("");
+    $('#region').val("");
 }
 
 /**
