@@ -1,142 +1,147 @@
 @CHARSET "UTF-8";
-
 body {
-	background-color: #607D8B !important;
+    background-color: #607D8B !important;
 }
 
 #tabs.container {
-	margin: 0 auto;
-	width: 70%;
-	background-color: #DFF0D8;
-	height: 500px;
-	margin-top: 50px;
-	padding: 0;
+    margin: 0 auto;
+    width: 70%;
+    background-color: #DFF0D8;
+    height: 500px;
+    margin-top: 50px;
+    padding: 0;
 }
 
 .nav-tabs {
-	background-color: #79979C;
+    background-color: #79979C;
 }
 
 .nav-tabs>li {
-	width: 50%;
+    width: 50%;
 }
 
 #tabs>.nav-tabs>li>a {
-	border-radius: 0 !important;
-	margin-right: 0 !important;
-	color: white;
-	text-align: center;
-	font-size: 32px;
-	transition: all 0.3s ease 0s;
+    border-radius: 0 !important;
+    margin-right: 0 !important;
+    color: white;
+    text-align: center;
+    font-size: 32px;
+    transition: all 0.3s ease 0s;
 }
 
-#tabs>.nav-tabs>li>a, #tabs>.nav-tabs>li>a:hover {
-	color: rgba(0, 0, 0, 0.58);
+#tabs>.nav-tabs>li>a,
+#tabs>.nav-tabs>li>a:hover {
+    color: rgba(0, 0, 0, 0.58);
 }
 
 #tabs>.nav-tabs>li>a:hover {
-	background-color: #6A9298;
+    background-color: #6A9298;
 }
 
 #tabs>.nav-tabs>li.active>a {
-	background-color: #DFF0D8;
+    background-color: #DFF0D8;
 }
 
 #entrance-tab-form {
-	margin-left: 200px;
+    margin-left: 200px;
 }
 
 #number {
-	margin-top: 60px;
-	width: 380px;
+    margin-top: 60px;
+    width: 380px;
 }
 
 #car-number {
-	height: 100px;
-	padding: 0;
-	font-size: 68px;
+    height: 100px;
+    padding: 0;
+    font-size: 68px;
 }
 
 #number>#addon1>#rus {
-	float: left;
-	margin-top: 10px;
-}
-
-#region {
-	width: 60px;
-	height: 36px;
-	padding: 0;
-	font-size: 25px;
-	text-align: center;
-}
-
-#car-number::-webkit-input-placeholder { /* WebKit browsers */
-	text-align: center;
-}
-
-#car-number:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-	text-align: center;
-}
-
-#car-number::-moz-placeholder {
-	/* Mozilla Firefox 19+ but I'm not sure about working */
-	text-align: center;
-}
-
-#car-number:-ms-input-placeholder { /* Internet Explorer 10+ */
-	text-align: center;
-}
-
-#ticket-radio {
-	font-size: 30px;
-	color: rgba(0, 0, 0, 0.58);
-	margin-top: 30px;
-}
-
-.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default
-	{
-	color: rgb(0, 110, 162) !important;
-	font-weight: bold;
-}
-
-#confirm-btn {
-	margin-top: 70px;
-	margin-right: 50px;
-	width: 150px;
-	height: 70px;
-	font-size: 30px;
-}
-
-#table {
-	width: 80%;
-	margin-left: 10%;
-	margin-right: 10%;
+    float: left;
     margin-top: 10px;
 }
 
-#table button{
+#region {
+    width: 60px;
+    height: 36px;
+    padding: 0;
+    font-size: 25px;
+    text-align: center;
+}
+
+#car-number::-webkit-input-placeholder {
+    /* WebKit browsers */
+    text-align: center;
+}
+
+#car-number:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    text-align: center;
+}
+
+#car-number::-moz-placeholder {
+    /* Mozilla Firefox 19+ but I'm not sure about working */
+    text-align: center;
+}
+
+#car-number:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    text-align: center;
+}
+
+#ticket-radio {
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.58);
+    margin-top: 30px;
+}
+
+.btn-default.active,
+.btn-default:active,
+.open>.dropdown-toggle.btn-default {
+    color: rgb(0, 110, 162) !important;
+    font-weight: bold;
+}
+
+#confirm-btn {
+    margin-top: 70px;
+    margin-right: 50px;
+    width: 150px;
+    height: 70px;
+    font-size: 30px;
+}
+
+#table {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10px;
+}
+
+#table button {
     margin-left: 0;
     margin-right: 0;
     width: 100%;
 }
 
-.th-head, .td-inner {
-	text-align: center;
-	color: hsla(0, 0%, 0%, 0.73);
+.th-head,
+.td-inner {
+    text-align: center;
+    color: hsla(0, 0%, 0%, 0.73);
 }
 
 .th-head {
-	font-size: 22px;
+    font-size: 22px;
 }
 
 .td-inner {
-	font-size: 18px;
+    font-size: 18px;
 }
 
 .btn-danger {
-	border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 .car-number {
-	font-weight: bold;
+    font-weight: bold;
 }
