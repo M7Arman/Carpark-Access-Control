@@ -57,6 +57,7 @@ function getAllCars() {
             drawTable(data);
         },
         error: function () {
+            alert("Перезагрузите страницу.");
             //TODO: Handle this function
         }
     });
@@ -84,6 +85,7 @@ function addCar() {
             getAllCars();
         },
         error: function () {
+            alert("Не удалось добавить этот автомобиль в базы данных.");
             //TODO: Handle this function
         }
     });
@@ -112,7 +114,7 @@ function removeCar() {
         type: "DELETE",
         success: getAllCars,
         error: function () {
-            alert("Could not remove the car.");
+            alert("Не удаётся удалить этот автомобиль из базы данных.");
             //TODO: Handle this function
         }
     });
@@ -147,7 +149,7 @@ function drawRow(row, i) {
     var rowData = $.extend({}, emptyRow);
     if (row.number !== emptyRow.number) {
         rowData.number = row.number + " " + row.region;
-        rowData.ticket = (row.ticket === "Y") ? "Yes" : "No";
+        rowData.ticket = (row.ticket === "Y") ? "Да" : "Нет";
     }
     var row = $("<tr />")
     $("#table").append(row);
