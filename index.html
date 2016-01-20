@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Carpark access control</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery.growl.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.min.css"></link>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/jquery.growl.js"></script>
 </head>
 
 <body>
@@ -24,7 +26,7 @@
             <div id="entrance-tab" class="tab-pane fade in active">
                 <form id="entrance-tab-form">
                     <div id="number" class="input-group input-group-lg">
-                        <input id="car-number" class="form-control" type="text" style="text-transform: uppercase" placeholder="x777xx" aria-describedby="addon1" maxlength="6" required/>
+                        <input id="car-number" class="form-control" type="text" placeholder="x777xx" aria-describedby="addon1" maxlength="6" required/>
                         <span class="input-group-addon" id="addon1">
                         <input id="region" class="form-control" type="text"
 							placeholder="00" maxlength="3" required/>
@@ -46,7 +48,8 @@
                             </label>
                         </div>
                     </div>
-                    <button id="confirm-btn" type="button" class="btn .btn-lg btn-primary pull-right disabled">Добавить</button>
+                    <button id="add-btn" type="button" class="btn btn-lg btn-primary pull-right disabled">Добавить</button>
+                    <button id="delete-btn" type="button" class="btn btn-lg btn-danger pull-right disabled">Удалить</button>
             </div>
             </form>
 
@@ -57,7 +60,6 @@
                             <th class="th-head">ID</th>
                             <th class="th-head">VIP?</th>
                             <th class="th-head">Номер</th>
-                            <th class="th-head col-md-1">Удалить?</th>
                         </tr>
                     </thead>
                 </table>

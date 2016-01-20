@@ -23,7 +23,8 @@ var emptyRow = {
 
 $(document).ready(function () {
     getAllCars();
-    $("#confirm-btn").click(addCar);
+    $("#add-btn").click(addCar);
+    $("#delete-btn").click(removeCar);
     $("#car-number").change(validateInputs);
     $("#region").change(validateInputs);
 });
@@ -33,16 +34,12 @@ function validateInputs() {
     var regionVal = $("#region").val();
 
     if (carNumberVal.length == 6 && (regionVal.length == 2 || regionVal.length == 3)) {
-        $("#confirm-btn").removeClass("disabled");
+        $("#add-btn").removeClass("disabled");
+        $("#delete-btn").removeClass("disabled");
     } else {
-        $("#confirm-btn").addClass("disabled");
+        $("#add-btn").addClass("disabled");
+        $("#delete-btn").addClass("disabled");
     }
-}
-
-
-function injectRemoveCarClickEvents() {
-    $("#table button").click(removeCar);
-    console.log("injectClickEvents");
 }
 
 function getAllCars() {
@@ -52,7 +49,7 @@ function getAllCars() {
     $.ajax({
         url: fullUrl,
         type: "GET",
-        async: false,
+        async: true,
         success: function (data, status) {
             drawTable(data);
         },
@@ -61,7 +58,6 @@ function getAllCars() {
             //TODO: Handle this function
         }
     });
-    injectRemoveCarClickEvents();
 }
 
 /**
@@ -71,7 +67,7 @@ function addCar() {
     console.log("adding...");
     var fullUrl = URL + endpoints.addCar;
     console.log("url: " + fullUrl);
-    addCarApiBody = $.extend({}, addCarApiInitialBody);
+    var addCarApiBody = $.extend({}, addCarApiInitialBody);
     addCarApiBody.number = $('#car-number').val();
     addCarApiBody.region = $('#region').val();
     addCarApiBody.ticket = getIsThereTicket();
@@ -80,14 +76,12 @@ function addCar() {
         type: "POST",
         data: addCarApiBody,
         success: function (data, status) {
-            // TODO: Print notification about successful adding
             emptyAddCarFields();
             getAllCars();
             validateInputs();
         },
         error: function () {
             alert("Не удалось добавить этот автомобиль в базы данных.");
-            //TODO: Handle this function
         }
     });
 }
@@ -99,24 +93,29 @@ function emptyAddCarFields() {
 }
 
 /**
- * The function is called when a click event on 'Remove' button of any table row
- * is performed
+ * The function is called when a click event on 'Remove' button is performed
  */
 function removeCar() {
     console.log("Removing the car...")
-    var row = $(this).parent().parent();
-    var carFullNum = row.find(".car-number").html().split(" ");
-    var carNum = carFullNum[0];
-    var region = carFullNum[1];
-    var ticketOfCar = row.find(".is-there-ticket");
+    var carNum = $('#car-number').val();
+    var region = $('#region').val();
     var fullUrl = URL + endpoints.deleteCar + "/" + carNum + "/" + region;
     $.ajax({
         url: fullUrl,
         type: "DELETE",
-        success: getAllCars,
+        success: function (data, status) {
+            if (data.status === false) {
+                $.growl.error({
+                    message: "Нет такой машины в парковке!"
+                });
+                return;
+            }
+            emptyAddCarFields();
+            getAllCars();
+            validateInputs();
+        },
         error: function () {
             alert("Не удаётся удалить этот автомобиль из базы данных.");
-            //TODO: Handle this function
         }
     });
 }
@@ -155,17 +154,10 @@ function drawRow(row, i) {
     var row = $("<tr />")
     $("#table").append(row);
     var tdOpen = "<td class=\"td-inner\">";
-    var tdOpenForCarNum = "<td class=\"td-inner car-number\">";
+    var tdOpenForCarNum = "<td class=\"td-inner car-number-column\">";
     var tdOpenForTicket = "<td class=\"td-inner is-there-ticket\">";
     var tdClose = "</td>";
-    var removeBtn = "<button class=\"btn btn-danger center-block\"><i class=\"glyphicon glyphicon-remove\"></i></button>";
-    var disabledRemoveBtn = "<button class=\"btn btn-danger center-block disabled\"><i class=\"glyphicon glyphicon-remove\"></i></button>";
     row.append($(tdOpen + (i + 1) + tdClose));
     row.append($(tdOpenForTicket + rowData.ticket + tdClose));
     row.append($(tdOpenForCarNum + rowData.number + tdClose));
-    if (rowData.number === "-") {
-        row.append($(tdOpen + disabledRemoveBtn + tdClose));
-    } else {
-        row.append($(tdOpen + removeBtn + tdClose));
-    }
 }

@@ -103,10 +103,9 @@ body {
     font-weight: bold;
 }
 
-#confirm-btn {
+#add-btn, #delete-btn {
     margin-top: 70px;
-    margin-right: 50px;
-    width: 150px;
+    margin-right: 30px;
     height: 70px;
     font-size: 30px;
 }
@@ -116,12 +115,6 @@ body {
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 10px;
-}
-
-#table button {
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
 }
 
 .th-head,
@@ -138,10 +131,11 @@ body {
     font-size: 18px;
 }
 
-.btn-danger {
+.btn {
     border-radius: 0 !important;
 }
 
-.car-number {
+#car-number {
     font-weight: bold;
+    text-transform: uppercase;
 }
