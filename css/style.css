@@ -139,3 +139,8 @@ body {
     font-weight: bold;
     text-transform: uppercase;
 }
+
+#list-tab {
+    overflow-y: scroll;
+    height: 80%;
+}

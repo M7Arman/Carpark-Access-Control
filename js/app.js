@@ -3,7 +3,7 @@
  */
 
 var URL = window.location.href; // Returns current URL
-var carParkLimit = 10;
+var carParkLimit = 30;
 var endpoints = {
     addCar: "car",
     deleteCar: "car",
