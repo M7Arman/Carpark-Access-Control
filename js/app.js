@@ -83,6 +83,7 @@ function addCar() {
             // TODO: Print notification about successful adding
             emptyAddCarFields();
             getAllCars();
+            validateInputs();
         },
         error: function () {
             alert("Не удалось добавить этот автомобиль в базы данных.");
